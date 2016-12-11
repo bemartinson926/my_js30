@@ -77,20 +77,11 @@
 
       const seconds = now.getSeconds();
       const minutes = now.getMinutes();
-      const hour    = now.getHours();
+      const hour    = getAjustedHour(now);
 
       const secondsDegrees = ((seconds / 60) * 360);
-
       const minutesDegrees = ((minutes / 60) * 360);
-
-      let adjustedHour;
-      if (hour > 12) {
-        adjustedHour = (hour - 12);
-      } else {
-        adjustedHour = hour;
-      }
-
-      const hoursDegrees = ((adjustedHour / 12) * 360);
+      const hoursDegrees   = ((hour / 12) * 360);
 
       // account for rotation to 12
       const offsetSecondsDegress = secondsDegrees + 90;
@@ -99,10 +90,22 @@
 
       secondHand.style.transform = `rotate(${offsetSecondsDegress}deg)`;
       minuteHand.style.transform = `rotate(${offsetMinutesDegress}deg)`;
-      hourHand.style.transform = `rotate(${offsetHoursDegress}deg)`;
+      hourHand.style.transform   = `rotate(${offsetHoursDegress}deg)`;
     }
 
     setInterval(setDate, 1000);
+
+    function getAjustedHour(now) {
+      const hour = now.getHours();
+
+      let adjustedHour;
+      if (hour > 12) {
+        adjustedHour = (hour - 12);
+      } else {
+        adjustedHour = hour;
+      }
+      return adjustedHour;
+    }
   </script>
 </body>
 </html>
