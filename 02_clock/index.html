@@ -61,13 +61,48 @@
       top:50%;
       transform-origin: 100%;
       transform: rotate(90deg);
+      transition: all 0.05s;
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58,1);
     }
 
   </style>
 
   <script>
+    const secondHand = document.querySelector('.second-hand');
+    const minuteHand = document.querySelector('.min-hand');
+    const hourHand = document.querySelector('.hour-hand');
 
+    function setDate() {
+      const now = new Date();
 
+      const seconds = now.getSeconds();
+      const minutes = now.getMinutes();
+      const hour    = now.getHours();
+
+      const secondsDegrees = ((seconds / 60) * 360);
+
+      const minutesDegrees = ((minutes / 60) * 360);
+
+      let adjustedHour;
+      if (hour > 12) {
+        adjustedHour = (hour - 12);
+      } else {
+        adjustedHour = hour;
+      }
+
+      const hoursDegrees = ((adjustedHour / 12) * 360);
+
+      // account for rotation to 12
+      const offsetSecondsDegress = secondsDegrees + 90;
+      const offsetMinutesDegress = minutesDegrees + 90;
+      const offsetHoursDegress = hoursDegrees + 90;
+
+      secondHand.style.transform = `rotate(${offsetSecondsDegress}deg)`;
+      minuteHand.style.transform = `rotate(${offsetMinutesDegress}deg)`;
+      hourHand.style.transform = `rotate(${offsetHoursDegress}deg)`;
+    }
+
+    setInterval(setDate, 1000);
   </script>
 </body>
 </html>
