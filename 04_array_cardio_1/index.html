@@ -63,6 +63,18 @@
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
+    const sortedPeople = people.sort((a,b) => {
+      let aCommaIndex = a.indexOf(',');
+      let aLast = a.substring(0, aCommaIndex).toUpperCase();
+      let aFirst = a.substring((aCommaIndex + 2), a.length).toUpperCase();
+
+      let bCommaIndex = b.indexOf(',');
+      let bLast = b.substring(0, bCommaIndex).toUpperCase();
+      let bFirst = b.substring((bCommaIndex + 2), b.length).toUpperCase();
+      return (aLast > bLast) ? 1 : -1;
+    });
+
+    console.log('sortedPeople', sortedPeople);
 
     // 8. Reduce Exercise
     // Sum up the instances of each of these
