@@ -77,13 +77,15 @@
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
 
     const vehicleCount = data.reduce((store, v) => {
-      if (store[v]) {
-        store[v] += 1;
-      } else {
-        store[v] = 1;
-      }
+      store[v] += 1;
       return store;
-    }, {});
+    }, {
+      bike: 0,
+      car: 0,
+      truck: 0,
+      van: 0,
+      walk: 0
+    });
 
     console.log(vehicleCount);
 
