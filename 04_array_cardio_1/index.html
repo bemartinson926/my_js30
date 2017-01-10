@@ -64,13 +64,9 @@
     // 7. sort Exercise
     // Sort the people alphabetically by last name
     const sortedPeople = people.sort((a,b) => {
-      let aCommaIndex = a.indexOf(',');
-      let aLast = a.substring(0, aCommaIndex).toUpperCase();
-      let aFirst = a.substring((aCommaIndex + 2), a.length).toUpperCase();
+      const [aLast, aFirst] = a.split(', ');
+      const [bLast, bFirst] = b.split(', ');
 
-      let bCommaIndex = b.indexOf(',');
-      let bLast = b.substring(0, bCommaIndex).toUpperCase();
-      let bFirst = b.substring((bCommaIndex + 2), b.length).toUpperCase();
       return (aLast > bLast) ? 1 : -1;
     });
 
